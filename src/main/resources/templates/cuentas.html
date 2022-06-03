@@ -10,30 +10,30 @@
 
 <div class="container mt-4">
 
-<a th:href="@{/nuevo}" class="btn btn-primary"> Nuevo</a>
+<a th:href="@{/nueva_cuenta}" class="btn btn-primary"> Nuevo</a>
 <br>
 	<table class="table">
 		<thead>
 		<tr>
-		<th>Cedula</th>
-		<th>Nombres</th>
-		<th>Telefono</th>
-		<th>Edad</th>
-		<th>N° Cuenta</th>
+		<th>Cedula Usuario</th>
+		<th>Tipo</th>
+		<th>Estado</th>
+		<th>Valor</th>
+		<th>Modena</th>
 		<th>Opciones</th>
 		</tr>
 		</thead>
 			<tbody>
-				<tr th:each="usuario:${usuarios}">
-					<td th:text="${usuario.cedula}"></td>
-					<td th:text="${usuario.nombres}"></td>
-					<td th:text="${usuario.telefono}"></td>
-					<td th:text="${usuario.edad}"></td>
-					<td th:text="${usuario.n_cuenta}"></td>
+				<tr th:each="cuenta:${cuentas}">
+					<td th:text="${cuenta.cedula_cliente}"></td>
+					<td th:text="${cuenta.tipo}"></td>
+					<td th:text="${cuenta.estado}"></td>
+					<td th:text="${cuenta.valor}"></td>
+					<td th:text="${cuenta.moneda}"></td>
 					<td>
-						<a th:href="@{/editar/}+${usuario.cedula}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/editar_cuenta/}+${cuenta.cedula_cliente}" class="btn btn-warning">Editar</a>
 						   
-						<a th:href="@{/eliminar/}+${usuario.cedula}" class="btn btn-danger">Eliminar</a>
+						<a th:href="@{/eliminar_cuenta/}+${cuenta.cedula_cliente}" class="btn btn-danger">Eliminar</a>
 						
 						
 					</td>
