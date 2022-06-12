@@ -33,7 +33,7 @@ public class UsuarioService implements IUsuarioService {
 	@Override
 	public Optional<Usuario> listarPorCedula(int cedula) {
 		if(!iUsuario.existsById(cedula))
-			throw new NotFoundException("No existe el usuario con la cedula"+cedula);
+			throw new NotFoundException("No existe el usuario con la cedula "+cedula);
 		return iUsuario.findById(cedula);
 	}
 
@@ -89,13 +89,17 @@ public class UsuarioService implements IUsuarioService {
 		Optional<Usuario> usuarioU = iUsuario.findById(cedula);
 		if(usuarioU.isPresent()) {
 			if(u != null) {
+				int cedUser = usuarioU.get().getCedula();
+				int CedulaReg = u.getCedula();
+				if(cedUser == CedulaReg) {
 					return iUsuario.save(u);
-			}else {
+				}
 				mensaje = "No se puede modificar la cedula";
-                throw new BadRequestException(mensaje);
+                throw new BadRequestException(mensaje);		
+			}else {
+				 mensaje = "Error de datos";
+	             throw new BadRequestException(mensaje);
 			}
-			
-			
 		}else {
 			mensaje = "La información no existe";
             throw new NotFoundException(mensaje);

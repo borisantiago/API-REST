@@ -23,7 +23,6 @@ import com.pichincha.demo.service.UsuarioService;
 @RequestMapping("/api/user")
 public class usuarioController {
 	
-	
 	@Autowired
 	UsuarioService usuarioService;
 	

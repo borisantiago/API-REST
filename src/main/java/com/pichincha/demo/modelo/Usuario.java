@@ -17,7 +17,6 @@ public class Usuario {
 	private String apellido;
 	private String telefono;
 	private int edad;
-	private int n_cuenta;
 	
 	
 	
@@ -34,7 +33,6 @@ public class Usuario {
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.edad = edad;
-		this.n_cuenta = n_cuenta;
 	}
 
 
@@ -86,21 +84,5 @@ public class Usuario {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-
-
-	public int getN_cuenta() {
-		return n_cuenta;
-	}
-
-
-	public void setN_cuenta(int n_cuenta) {
-		this.n_cuenta = n_cuenta;
-	}
-	
-	
-	
-	
-	
-	
 	
 }
