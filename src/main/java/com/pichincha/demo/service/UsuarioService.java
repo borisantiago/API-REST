@@ -32,7 +32,7 @@ public class UsuarioService implements IUsuarioService {
 
 	@Override
 	public Optional<Usuario> listarPorCedula(int cedula) {
-		if(!iUsuario.existByCedula(cedula))
+		if(!iUsuario.existsById(cedula))
 			throw new NotFoundException("No existe el usuario con la cedula"+cedula);
 		return iUsuario.findById(cedula);
 	}
@@ -41,7 +41,7 @@ public class UsuarioService implements IUsuarioService {
 	@Override
 	public Usuario listarPorCuenta(int n_cuenta) {
 		if(!iUsuario.existByCuenta(n_cuenta))
-			throw new NotFoundException("No existe la cuenta registrada:" +n_cuenta);
+			throw new NotFoundException("No existe la cuenta registrada: " +n_cuenta);
 		return iUsuario.findByCedula(n_cuenta);
 	}
 
@@ -89,8 +89,7 @@ public class UsuarioService implements IUsuarioService {
 		Optional<Usuario> usuarioU = iUsuario.findById(cedula);
 		if(usuarioU.isPresent()) {
 			if(u != null) {
-				u.setCedula(cedula);
-				return iUsuario.save(u);
+					return iUsuario.save(u);
 			}else {
 				mensaje = "No se puede modificar la cedula";
                 throw new BadRequestException(mensaje);

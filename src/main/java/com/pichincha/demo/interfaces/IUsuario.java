@@ -11,8 +11,7 @@ import com.pichincha.demo.modelo.Usuario;
 public interface IUsuario extends CrudRepository<Usuario, Integer>{
 	
 	public Usuario findByCedula(int cedula);
-	@Query (value = "SELECT COUNT(u.cedula)=1 FORM usuario u WHERE u.cedula LIKE %:cedula", nativeQuery = true)
-	public Boolean existByCedula(@Param("cedula") int cedula);
+	
 	@Query (value = "SELECT * FORM usuario u WHERE u.nombre LIKE %:nombre", nativeQuery = true)
 	public Boolean existByNombre(@Param("nombre")String nombre);
 	@Query (value = "SELECT COUNT(u.n_cedula)=1 FORM usuario u WHERE u.n_cuenta LIKE %:n_cuenta", nativeQuery = true)

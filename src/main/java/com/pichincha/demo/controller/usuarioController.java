@@ -1,12 +1,18 @@
 package com.pichincha.demo.controller;
 
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -21,10 +27,35 @@ public class usuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@PostMapping("/save")
+	@GetMapping("/list")
+	public ResponseEntity<List<Usuario>> listarUsuario(){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.listar());
+	}
+	
+	@GetMapping("/list/{cedula}")
+	public ResponseEntity<Optional<Usuario>> listarUsuarioCedula(@PathVariable("cedula") int ceduda){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.listarPorCedula(ceduda));
+	}
+	
+	@PostMapping("/create")
 	public ResponseEntity<Usuario> guardar(@RequestBody Usuario u){
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(u));
 	}
+	
+	@PutMapping("/update/{cedula}")
+	public ResponseEntity<Usuario> actualizarUsuario(@PathVariable("cedula") int cedula, @RequestBody Usuario u){
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.actualizarUsuario(cedula, u));
+	}
+	
+	@DeleteMapping("/delete/{cedula}")
+	public ResponseEntity<?> eliminar(@PathVariable("cedula") int cedula){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioService.delete(cedula));
+	}
+	
+
+	
+	
+	
 	
 	/*
 	@Autowired
