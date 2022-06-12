@@ -1,8 +1,6 @@
 package com.pichincha.demo.modelo;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,12 +9,17 @@ import javax.persistence.Table;
 public class Usuario {
 	
 	@Id
+	/*
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	*/
 	private int cedula;
-	private String nombres;
+	private String nombre;
+	private String apellido;
 	private String telefono;
 	private int edad;
 	private int n_cuenta;
+	
+	
 	
 	public Usuario() {
 		super();
@@ -24,10 +27,11 @@ public class Usuario {
 	}
 
 
-	public Usuario(int cedula, String nombres, String telefono, int edad, int n_cuenta) {
+	public Usuario(int cedula, String nombre, String apellido, String telefono, int edad, int n_cuenta) {
 		super();
 		this.cedula = cedula;
-		this.nombres = nombres;
+		this.nombre = nombre;
+		this.apellido = apellido;
 		this.telefono = telefono;
 		this.edad = edad;
 		this.n_cuenta = n_cuenta;
@@ -44,13 +48,23 @@ public class Usuario {
 	}
 
 
-	public String getNombres() {
-		return nombres;
+	public String getNombre() {
+		return nombre;
 	}
 
 
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 
 
@@ -72,7 +86,8 @@ public class Usuario {
 	public void setEdad(int edad) {
 		this.edad = edad;
 	}
-	
+
+
 	public int getN_cuenta() {
 		return n_cuenta;
 	}
@@ -81,6 +96,8 @@ public class Usuario {
 	public void setN_cuenta(int n_cuenta) {
 		this.n_cuenta = n_cuenta;
 	}
+	
+	
 	
 	
 	

@@ -1,24 +1,32 @@
 package com.pichincha.demo.controller;
 
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
-import com.pichincha.demo.interfaceService.IUsuarioService;
 import com.pichincha.demo.modelo.Usuario;
+import com.pichincha.demo.service.UsuarioService;
 
 @Controller
-@RequestMapping
+@RequestMapping("/api/user")
 public class usuarioController {
 	
+	
+	@Autowired
+	UsuarioService usuarioService;
+	
+	@PostMapping("/save")
+	public ResponseEntity<Usuario> guardar(@RequestBody Usuario u){
+		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.guardar(u));
+	}
+	
+	/*
 	@Autowired
 	private IUsuarioService service;
 	
@@ -29,11 +37,13 @@ public class usuarioController {
 		return "index";
 	}
 	
+	
 	@GetMapping("/nuevo")
 	public String agregar(Model model) {
 		model.addAttribute("usuario", new Usuario());
 		return "form";
 	}
+	
 	
 	//public String save(@Valid Usuario u, Model model) {
 	@PostMapping("/save")
@@ -41,6 +51,7 @@ public class usuarioController {
 		service.save(u);
 		return "redirect:/listar";
 	}
+	
 	
 	@GetMapping("/editar/{cedula}")
 	public String editar(@PathVariable int cedula, Model model) {
@@ -54,6 +65,6 @@ public class usuarioController {
 		service.delete(cedula);
 		return "redirect:/listar";
 	}
-	
+	*/
 
 }

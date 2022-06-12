@@ -7,7 +7,9 @@ import com.pichincha.demo.modelo.Usuario;
 
 public interface IUsuarioService {
 	public List<Usuario>listar();
-	public Optional<Usuario>listarCedula(int cedula);
-	public int save(Usuario u);
-	public void delete(int cedula);
+	public Optional<Usuario>listarPorCedula(int cedula);
+	public Usuario listarPorCuenta(int  n_cuenta);
+	public Usuario guardar(Usuario u);
+	public String delete(int cedula);
+	public Usuario actualizarUsuario(int cedula, Usuario u);
 }
