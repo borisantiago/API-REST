@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import com.pichincha.demo.exception.BadRequestException;
-import com.pichincha.demo.exception.NotFoundException;
+import com.pichincha.demo.exception.Exception.BadRequestException;
+import com.pichincha.demo.exception.Exception.NotFoundException;
 import com.pichincha.demo.interfaceService.IUsuarioService;
 import com.pichincha.demo.interfaces.IUsuario;
 import com.pichincha.demo.modelo.Usuario;

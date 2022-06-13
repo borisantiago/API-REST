@@ -1,7 +1,10 @@
 package com.pichincha.demo.modelo;
 
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,9 @@ public class Usuario {
 	private String apellido;
 	private String telefono;
 	private int edad;
+	
+	@OneToMany(mappedBy = "usuario")
+	private Set<CuentaP> cuenta;
 	
 	
 	

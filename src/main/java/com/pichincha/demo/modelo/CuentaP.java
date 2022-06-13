@@ -1,7 +1,10 @@
 package com.pichincha.demo.modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,10 @@ public class CuentaP {
 	private String estado;
 	private double saldo;
 	private String moneda;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="cedula")
+	private Usuario usuario;
 	
 	
 	public CuentaP(int ncuenta, int cedulaU, String tipo, String estado, double saldo, String moneda) {
@@ -91,6 +98,15 @@ public class CuentaP {
 
 	public void setMoneda(String moneda) {
 		this.moneda = moneda;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 	
 	

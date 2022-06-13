@@ -1,14 +1,14 @@
-package com.pichincha.demo.exception;
+package com.pichincha.demo.exception.Exception;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 
 @ControllerAdvice(annotations = RestController.class)
-public class NotFoundException extends RuntimeException {
+public class BadRequestException extends RuntimeException {
 
-	public NotFoundException() {	
+	public BadRequestException() {	
 	}
 	
-	public NotFoundException(String message) {	
+	public BadRequestException(String message) {	
 		super(message);
 	}
 	

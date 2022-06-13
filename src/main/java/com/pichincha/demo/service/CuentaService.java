@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pichincha.demo.exception.BadRequestException;
-import com.pichincha.demo.exception.NotFoundException;
+import com.pichincha.demo.exception.Exception.BadRequestException;
+import com.pichincha.demo.exception.Exception.NotFoundException;
 import com.pichincha.demo.interfaceService.ICuentaService;
 import com.pichincha.demo.interfaces.ICuentaP;
+import com.pichincha.demo.interfaces.IUsuario;
 import com.pichincha.demo.modelo.CuentaP;
+import com.pichincha.demo.modelo.Usuario;
 
 
 @Service
@@ -19,8 +21,11 @@ public class CuentaService implements ICuentaService{
 	@Autowired
 	ICuentaP iCuenta;
 	
+	@Autowired
+	IUsuario iUsuario;
+	
 	@Override
-	public List<CuentaP> listar() {
+	public List<CuentaP> listarCuentas() {
 		List<CuentaP> cuentas = (List<CuentaP>) iCuenta.findAll();
 		if(cuentas.size()>0) {
 			return cuentas;
@@ -48,21 +53,20 @@ public class CuentaService implements ICuentaService{
 	}
 
 	@Override
-	public CuentaP guardar(CuentaP c) {
-		String mensaje;
-		int ncuentaN = c.getNcuenta();
-		CuentaP CuentaN = iCuenta.findByNcuenta(ncuentaN);
-		
-		if(CuentaN == null) {
-			return iCuenta.save(c);
+	public CuentaP guardar(CuentaP c, int cedulaU) {
+		if(iUsuario.existsById(cedulaU)) {
+			Optional<Usuario> usuarios = iUsuario.findById(cedulaU);
+			c.setUsuario(usuarios.get());
+			if(!iCuenta.existsById(cedulaU)) {
+				return iCuenta.save(c);
+			}else {
+				throw new BadRequestException("Ya esta registrado el numero de cuenta"+c.getNcuenta());
+			}
+			
+		}else {
+			throw new NotFoundException("No existe la cedula el usuario: "+cedulaU);
 		}
 		
-		if(CuentaN != null) {
-			mensaje = "Ya está el número de cuenta registrado";
-			throw new BadRequestException(mensaje);
-		}
-		mensaje = "Usuario tuvo problemas al registro, preguntar al admin";
-		throw new BadRequestException(mensaje);
 	}
 
 	@Override

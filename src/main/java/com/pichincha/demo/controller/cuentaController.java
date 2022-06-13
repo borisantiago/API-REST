@@ -27,7 +27,7 @@ public class cuentaController {
 	
 	@GetMapping("/list")
 	public ResponseEntity<List<CuentaP>> listarCuentas(){
-		return ResponseEntity.status(HttpStatus.OK).body(cuentaService.listar());
+		return ResponseEntity.status(HttpStatus.OK).body(cuentaService.listarCuentas());
 	}
 	
 	@GetMapping("/list/{ncuenta}")
@@ -35,9 +35,9 @@ public class cuentaController {
 		return ResponseEntity.status(HttpStatus.OK).body(cuentaService.listarPorCuenta(ncuenta));
 	}
 	
-	@PostMapping("/create")
-	public ResponseEntity<CuentaP> guardar(@RequestBody CuentaP c){
-		return ResponseEntity.status(HttpStatus.CREATED).body(cuentaService.guardar(c));
+	@PostMapping("/create/{cedulaU}")
+	public ResponseEntity<CuentaP> guardar(@RequestBody CuentaP c, @PathVariable(value="cedulaU") int cedulaU){
+		return ResponseEntity.status(HttpStatus.CREATED).body(cuentaService.guardar(c, cedulaU));
 	}
 	
 	@PutMapping("/update/{ncuenta}")
